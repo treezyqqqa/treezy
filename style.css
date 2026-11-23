@@ -1,0 +1,112 @@
+:root {
+  color-scheme: dark;
+  background: #070d0d;
+  color: #b8c7c2;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.scene {
+  box-sizing: border-box;
+  display: grid;
+  min-block-size: 100vh;
+  min-block-size: 100svh;
+  place-items: center;
+  padding: 16px 0 20px;
+  background: radial-gradient(ellipse 44% 62% at 50% 46%, #0a1313, transparent 100%);
+}
+
+.work {
+  display: grid;
+  justify-items: center;
+  inline-size: 100%;
+  margin: 0;
+}
+
+#portrait {
+  display: block;
+  inline-size: min(calc(100% - 20px), max(240px, calc(100vh - 104px)), 790px);
+  inline-size: min(calc(100% - 20px), max(240px, calc(100svh - 104px)), 790px);
+  block-size: auto;
+  aspect-ratio: 1;
+}
+
+figcaption {
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding: 0 16px;
+}
+
+.quote {
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(0.875rem, 0.79rem + 0.25vw, 1.0625rem);
+  line-height: 1.7;
+  letter-spacing: 0.055em;
+  text-shadow: 0 0 14px rgb(171 205 194 / 22%);
+}
+
+.quote p {
+  min-block-size: 1.7em;
+  margin: 0;
+}
+
+.quote-copy [data-pending] {
+  visibility: hidden;
+}
+
+.quote-copy [data-cursor] {
+  position: relative;
+}
+
+.quote-copy [data-cursor]::after {
+  position: absolute;
+  inset-block: 0.03em 0.06em;
+  inset-inline-start: 100%;
+  margin-inline-start: 0.09em;
+  border-inline-start: 1px solid #9bb7ae;
+  box-shadow: 0 0 6px rgb(155 183 174 / 25%);
+  content: "";
+  animation: cursor-blink 900ms steps(1, end) infinite;
+  animation-delay: var(--cursor-delay, 0ms);
+}
+
+.quote-copy [data-cursor="fading"]::after {
+  animation: cursor-fade 760ms ease-out both;
+}
+
+.paused .quote-copy [data-cursor]::after {
+  animation-play-state: paused;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.16; }
+}
+
+@keyframes cursor-fade {
+  from { opacity: 0.8; }
+  to { opacity: 0; }
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 455px) {
+  .quote p { min-block-size: 3.4em; }
+  .quote-line { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-copy [data-cursor]::after { display: none; }
+}
